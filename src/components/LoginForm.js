@@ -22,8 +22,8 @@ export class LoginForm extends React.Component {
           <h2 className="form-signin-heading">Already a member? Welcome back!</h2>
           <h5 className="form-signin-subheading">Enter your log in details below</h5>
           <h6 className="form-signin-subheading">Fields marked * are mandatory.</h6>
-            <input className="form-control" placeholder="Email*"/>
-            <input className="form-control" placeholder="Password*"/>
+            <input type="email" className="form-control" placeholder="Email*" required/>
+            <input type="password" className="form-control" placeholder="Password*" required/>
             <label>
               <input type="checkbox" checked={this.state.rememberMeChecked} onChange={this.handleRememberMe}/>
               Remember me.
