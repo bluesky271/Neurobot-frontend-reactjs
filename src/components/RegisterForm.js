@@ -1,4 +1,5 @@
 import React from "react";
+import { CountryDropdown } from "react-country-region-selector";
 
 export class RegisterForm extends React.Component {
     constructor(props) {
@@ -6,16 +7,22 @@ export class RegisterForm extends React.Component {
         this.state = {
           isToggleOn: true,
           initialLink: "Click to enter your address details.",
-          cancelLink: "Cancel."
+          cancelLink: "Cancel.",
+          country: ""
         };
 
         this.handleClick = this.handleClick.bind(this);
+        this.selectCountry = this.selectCountry.bind(this);
     }
 
       handleClick() {
         this.setState(prevState => ({
           isToggleOn: !prevState.isToggleOn
         }));
+      }
+
+      selectCountry(countryName) {
+        this.setState({country: countryName});
       }
 
     render() {
@@ -48,7 +55,7 @@ export class RegisterForm extends React.Component {
                           <h2 className="form-signin-heading">Add your address details.</h2>
                           <input type="tel" className="form-control" placeholder="Telephone number"/>
                           <input type="text" className="form-control" placeholder="Company"/>
-                          <input className="form-control" placeholder="United Kingdom"/>
+                          <CountryDropdown value={this.state.country} onChange={(countryName) => this.selectCountry(countryName)} />
                           <input type="text" className="form-control" placeholder="Please enter an address."/>
                           <input type="text" className="form-control" placeholder="Address1 (e.g. street number and street name)*"/>
                           <input type="text" className="form-control" placeholder="Address2 (optional)"/>
