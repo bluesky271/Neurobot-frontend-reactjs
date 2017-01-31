@@ -6,6 +6,7 @@ export class RegisterForm extends React.Component {
         super(props);
         this.state = {
           isToggleOn: true,
+          termsAndConditionChecked: true,
           initialLink: "Click to enter your address details.",
           cancelLink: "Cancel.",
           country: ""
@@ -13,6 +14,7 @@ export class RegisterForm extends React.Component {
 
         this.handleClick = this.handleClick.bind(this);
         this.selectCountry = this.selectCountry.bind(this);
+        this.handleTermsAndCondition = this.handleTermsAndCondition.bind(this);
     }
 
       handleClick() {
@@ -23,6 +25,12 @@ export class RegisterForm extends React.Component {
 
       selectCountry(countryName) {
         this.setState({country: countryName});
+      }
+
+      handleTermsAndCondition() {
+        this.setState(prevState => ({
+          termsAndConditionChecked: !prevState.termsAndConditionChecked
+        }));
       }
 
     render() {
@@ -61,6 +69,10 @@ export class RegisterForm extends React.Component {
                           <input type="text" className="form-control" placeholder="Address2 (optional)"/>
                           <input type="text" className="form-control" placeholder="City*" required/>
                           <input type="text" className="form-control" placeholder="Postal code*" required/>
+                          <label>
+                            <input type="checkbox" checked={this.state.termsAndConditionChecked} onChange={this.handleTermsAndCondition} required/>
+                            By creating an account with Neurobot, I agree to the Terms of use and Privacy Policy.
+                          </label>
                         </div>
                     }
                     <button type="submit" className="btn btn-lg btn-primary btn-block">Join Neurobot</button>
